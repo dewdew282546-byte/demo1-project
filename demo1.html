@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ห้องเรียนทัศนศิลป์ | Visual Arts</title>
+
+  <style>
+    /* ===== 1. ตั้งค่าพื้นฐาน ===== */
+    :root {
+      --paper: #f6f1e7;
+      --ink: #25251f;
+      --blue: #3155d9;
+      --orange: #df694b;
+      --yellow: #efc75e;
+      --green: #b8c9ae;
+      --white: #fffdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Tahoma, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* ===== 2. แถบเมนู ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 241, 231, 0.96);
+      border-bottom: 1px solid #ded7ca;
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    /* ===== 3. หน้าแรก ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 50px;
+      padding-top: 85px;
+      padding-bottom: 90px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 55px);
+      line-height: 1.35;
+      margin: 20px 0;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      color: #656056;
+      margin-bottom: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px 23px;
+      background: var(--blue);
+      color: white;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      background: #203db1;
+    }
+
+    /* ภาพศิลปะที่สร้างด้วย CSS */
+    .art-board {
+      min-height: 340px;
+      background: #e8dfcf;
+      border: 1px solid #d5c9b5;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .art-board::before {
+      content: "";
+      width: 230px;
+      height: 230px;
+      background: var(--yellow);
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      right: 25px;
+    }
+
+    .art-board::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 250px;
+      background: var(--blue);
+      transform: rotate(25deg);
+      left: 35px;
+      bottom: -100px;
+      border-radius: 100px 100px 10px 10px;
+    }
+
+    .art-shape {
+      position: absolute;
+      width: 125px;
+      height: 125px;
+      background: var(--orange);
+      border-radius: 50% 50% 8px 50%;
+      transform: rotate(-25deg);
+      z-index: 1;
+      top: 100px;
+      left: 34%;
+    }
+
+    .art-label {
+      position: absolute;
+      z-index: 2;
+      right: 18px;
+      bottom: 18px;
+      background: var(--white);
+      padding: 8px 13px;
+      font-size: 12px;
+      transform: rotate(-3deg);
+    }
+
+    /* ===== 4. แถบจุดเด่น ===== */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-bottom: 80px;
+    }
+
+    .highlight {
+      padding: 25px;
+      border-radius: 8px;
+    }
+
+    .highlight h3 {
+      margin: 8px 0;
+    }
+
+    .highlight p {
+      font-size: 14px;
+    }
+
+    .highlight:nth-child(1) {
+      background: var(--yellow);
+    }
+
+    .highlight:nth-child(2) {
+      background: #e7a18c;
+    }
+
+    .highlight:nth-child(3) {
+      background: var(--green);
+    }
+
+    .symbol {
+      font-size: 30px;
+    }
+
+    /* ===== 5. บทเรียน ===== */
+    section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(27px, 4vw, 36px);
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: #6b665c;
+    }
+
+    #lessons {
+      background: var(--white);
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .lesson-card {
+      border: 1px solid #e5ded2;
+      border-radius: 10px;
+      overflow: hidden;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px #25251f12;
+    }
+
+    .lesson-art {
+      height: 180px;
+      display: grid;
+      place-items: center;
+      font-size: 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lesson-art.one {
+      background: #f0d77e;
+    }
+
+    .lesson-art.two {
+      background: #d9dff7;
+    }
+
+    .lesson-art.three {
+      background: #d0dfc8;
+    }
+
+    .lesson-art span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .lesson-body {
+      padding: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--blue);
+      background: #edf0ff;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .lesson-body h3 {
+      margin-bottom: 8px;
+    }
+
+    .lesson-body p {
+      color: #6b665c;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .text-button {
+      background: none;
+      border: none;
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    .text-button:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== 6. กล่องรายละเอียดบทเรียน ===== */
+    .detail-box {
+      display: none;
+      margin-top: 25px;
+      padding: 25px;
+      background: var(--paper);
+      border-left: 5px solid var(--blue);
+      border-radius: 5px;
+    }
+
+    .detail-box.show {
+      display: block;
+    }
+
+    .detail-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .detail-box ul {
+      padding-left: 22px;
+      margin: 12px 0;
+    }
+
+    /* ===== 7. คลังผลงาน ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      min-height: 210px;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .gallery-item:nth-child(1) {
+      background: #d6b9a7;
+    }
+
+    .gallery-item:nth-child(2) {
+      background: #b8c9ae;
+    }
+
+    .gallery-item:nth-child(3) {
+      background: #e9c96f;
+    }
+
+    .gallery-art {
+      font-size: 58px;
+      text-align: center;
+    }
+
+    .gallery-item small {
+      color: #454239;
+    }
+
+    /* ===== 8. เกี่ยวกับ ===== */
+    #about {
+      background: #25251f;
+      color: white;
+    }
+
+    #about .section-heading p {
+      color: #d0cabe;
+    }
+
+    .about-content {
+      max-width: 720px;
+    }
+
+    .about-content p {
+      color: #e0dace;
+      margin-bottom: 15px;
+    }
+
+    /* ===== 9. ส่วนท้าย ===== */
+    footer {
+      padding: 25px 0;
+      text-align: center;
+      font-size: 13px;
+      color: #6b665c;
+    }
+
+    /* ===== 10. รองรับมือถือ ===== */
+    @media (max-width: 760px) {
+      .navbar {
+        padding: 15px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+        gap: 30px;
+      }
+
+      .art-board {
+        min-height: 280px;
+      }
+
+      .highlights,
+      .lesson-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- เมนูเว็บไซต์ -->
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">ห้องเรียน<span>ทัศนศิลป์.</span></a>
+
+      <nav>
+        <a href="#home">หน้าแรก</a>
+        <a href="#lessons">บทเรียน</a>
+        <a href="#gallery">คลังผลงาน</a>
+        <a href="#about">เกี่ยวกับ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- หน้าแรก -->
+    <section class="container hero" id="home">
+      <div>
+        <div class="eyebrow">VISUAL ARTS • M.3</div>
+
+        <h1>
+          มองให้เห็น<br>
+          คิดให้เป็น<br>
+          <span>สร้างสรรค์ให้สนุก</span>
+        </h1>
+
+        <p>
+          พื้นที่เรียนรู้ทัศนศิลป์ผ่านการสังเกต ทดลอง
+          และลงมือสร้างผลงานด้วยความคิดของตัวเอง
+          เพราะศิลปะไม่ได้มีคำตอบเพียงคำตอบเดียว
+        </p>
+
+        <a class="button" href="#lessons">เริ่มเรียนรู้ →</a>
+      </div>
+
+      <div class="art-board" role="img"
+           aria-label="ภาพนามธรรมแสดงรูปทรงและสีทางศิลปะ">
+        <div class="art-shape"></div>
+        <div class="art-label">ART IS EVERYWHERE!</div>
+      </div>
+    </section>
+
+    <!-- จุดเด่นของการเรียนรู้ -->
+    <div class="container highlights">
+      <article class="highlight">
+        <div class="symbol">◉</div>
+        <h3>สังเกต</h3>
+        <p>ฝึกมองสิ่งรอบตัวและค้นหาองค์ประกอบทางศิลปะ</p>
+      </article>
+
+      <article class="highlight">
+        <div class="symbol">✎</div>
+        <h3>ทดลอง</h3>
+        <p>กล้าคิด กล้าลอง และเรียนรู้จากกระบวนการทำงาน</p>
+      </article>
+
+      <article class="highlight">
+        <div class="symbol">▧</div>
+        <h3>สร้างสรรค์</h3>
+        <p>เปลี่ยนแนวคิดให้เป็นผลงานที่มีเอกลักษณ์ของตนเอง</p>
+      </article>
+    </div>
+
+    <!-- บทเรียน -->
+    <section id="lessons">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">LEARNING SPACE</div>
+          <h2>สำรวจบทเรียน</h2>
+          <p>เลือกหัวข้อที่สนใจ แล้วเริ่มต้นเรียนรู้ไปด้วยกัน</p>
+        </div>
+
+        <div class="lesson-grid">
+
+          <article class="lesson-card">
+            <div class="lesson-art one">
+              <span>◒ ◇ ●</span>
+            </div>
+            <div class="lesson-body">
+              <span class="tag">บทเรียนที่ 01</span>
+              <h3>องค์ประกอบศิลป์</h3>
+              <p>
+                เรียนรู้เรื่องเส้น สี รูปร่าง รูปทรง
+                และหลักการจัดองค์ประกอบให้เกิดความงาม
+              </p>
+              <button class="text-button"
+                onclick="showLesson('lesson1')">
+                อ่านบทเรียน →
+              </button>
+            </div>
+          </article>
+
+          <article class="lesson-card">
+            <div class="lesson-art two">
+              <span>✎ ◯ ▱</span>
+            </div>
+            <div class="lesson-body">
+              <span class="tag">บทเรียนที่ 02</span>
+              <h3>การออกแบบสร้างสรรค์</h3>
+              <p>
+                ฝึกคิดหาแนวทาง สร้างภาพร่าง
+                และพัฒนาแนวคิดให้เป็นผลงานของตนเอง
+              </p>
+              <button class="text-button"
+                onclick="showLesson('lesson2')">
+                อ่านบทเรียน →
+              </button>
+            </div>
+          </article>
+
+          <article class="lesson-card">
+            <div class="lesson-art three">
+              <span>▤ ✂ ◈</span>
+            </div>
+            <div class="lesson-body">
+              <span class="tag">บทเรียนที่ 03</span>
+              <h3>งานสื่อผสม</h3>
+              <p>
+                ทำความรู้จักวัสดุ เทคนิค และการนำสิ่งต่าง ๆ
+                มาสร้างผลงานศิลปะร่วมกัน
+              </p>
+              <button class="text-button"
+                onclick="showLesson('lesson3')">
+                อ่านบทเรียน →
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- เนื้อหาจะแสดงตรงนี้เมื่อกดอ่านบทเรียน -->
+        <div id="lesson-detail" class="detail-box"
+             aria-live="polite">
+        </div>
+      </div>
+    </section>
+
+    <!-- คลังผลงาน -->
+    <section id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">STUDENT ARTWORK</div>
+          <h2>คลังผลงานสร้างสรรค์</h2>
+          <p>พื้นที่สำหรับรวบรวมและแบ่งปันแนวคิดทางศิลปะ</p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-item">
+            <small>WORK 01 · สีและรูปทรง</small>
+            <div class="gallery-art">◒ ◇ ●</div>
+            <h3>จังหวะของสี</h3>
+          </article>
+
+          <article class="gallery-item">
+            <small>WORK 02 · ธรรมชาติ</small>
+            <div class="gallery-art">✿ ❋ ✿</div>
+            <h3>เรื่องราวจากธรรมชาติ</h3>
+          </article>
+
+          <article class="gallery-item">
+            <small>WORK 03 · สื่อผสม</small>
+            <div class="gallery-art">▤ ✂ ◈</div>
+            <h3>วัสดุเล่าเรื่อง</h3>
+          </article>
+        </div>
+
+        <p style="margin-top:20px; font-size:13px; color:#6b665c;">
+          หมายเหตุ: ภาพและชื่อผลงานในหน้านี้เป็นตัวอย่าง
+          สามารถเปลี่ยนเป็นผลงานจริงของนักเรียนได้
+        </p>
+      </div>
+    </section>
+
+    <!-- เกี่ยวกับเว็บไซต์ -->
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">ABOUT THIS CLASS</div>
+          <h2>ศิลปะเริ่มต้นได้จากตัวเรา</h2>
+        </div>
+
+        <div class="about-content">
+          <p>
+            ห้องเรียนทัศนศิลป์เป็นเว็บไซต์สื่อการเรียนรู้
+            ที่รวบรวมเนื้อหาและตัวอย่างผลงาน เพื่อช่วยให้นักเรียน
+            เข้าใจแนวคิดทางศิลปะและสามารถนำความรู้ไปประยุกต์ใช้ได้
+          </p>
+          <p>
+            จุดมุ่งหมายคือส่งเสริมให้นักเรียนกล้าแสดงความคิดเห็น
+            ทดลองใช้วัสดุหลากหลาย และพัฒนาความคิดสร้างสรรค์
+            ผ่านกระบวนการลงมือปฏิบัติ
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      ห้องเรียนทัศนศิลป์ · สื่อการเรียนรู้เพื่อความคิดสร้างสรรค์
+    </div>
+  </footer>
+
+  <script>
+    // เนื้อหาของบทเรียน สามารถแก้ไขได้ในส่วนนี้
+    const lessons = {
+      lesson1: {
+        title: "บทเรียนที่ 01 : องค์ประกอบศิลป์",
+        intro: "องค์ประกอบศิลป์ คือการนำทัศนธาตุมาจัดวางอย่างมีความสัมพันธ์ เพื่อสื่อสารแนวคิดและสร้างความน่าสนใจ",
+        points: [
+          "ทัศนธาตุ ได้แก่ จุด เส้น สี รูปร่าง รูปทรง พื้นผิว และพื้นที่ว่าง",
+          "หลักการจัดองค์ประกอบ ได้แก่ ความสมดุล จุดเด่น จังหวะ และสัดส่วน",
+          "การเลือกใช้ทัศนธาตุและหลักการจัดองค์ประกอบควรสัมพันธ์กับแนวคิดของงาน"
+        ],
+        activity: "ลองวาดภาพโดยใช้รูปทรงเรขาคณิตอย่างน้อย 3 ชนิด แล้วจัดให้เกิดจุดเด่นในภาพ"
+      },
+
+      lesson2: {
+        title: "บทเรียนที่ 02 : การออกแบบสร้างสรรค์",
+        intro: "การออกแบบสร้างสรรค์เริ่มจากการสังเกต ตั้งคำถาม คิดหาแนวทาง และทดลองถ่ายทอดแนวคิดเป็นภาพร่าง",
+        points: [
+          "สำรวจหัวข้อหรือปัญหาที่ต้องการสื่อสาร",
+          "รวบรวมแรงบันดาลใจและคิดแนวทางได้หลายแบบ",
+          "ร่างภาพ ทดลองจัดองค์ประกอบ และปรับแก้ก่อนสร้างผลงานจริง"
+        ],
+        activity: "เลือกสิ่งของใกล้ตัว 1 อย่าง แล้วร่างแนวคิดการออกแบบให้แตกต่างกัน 3 แบบ"
+      },
+
+      lesson3: {
+        title: "บทเรียนที่ 03 : งานสื่อผสม",
+        intro: "งานสื่อผสมเป็นงานศิลปะที่ใช้วัสดุหรือเทคนิคมากกว่าหนึ่งชนิดร่วมกัน เพื่อสร้างผลงานและถ่ายทอดความหมาย",
+        points: [
+          "วัสดุอาจเป็นกระดาษ ผ้า เชือก ใบไม้ หรือวัสดุเหลือใช้ที่เหมาะสม",
+          "เลือกวัสดุโดยพิจารณาคุณสมบัติ สี พื้นผิว และความแข็งแรง",
+          "วางแผนองค์ประกอบ ทดลองจัดวาง และยึดติดวัสดุอย่างเหมาะสม"
+        ],
+        activity: "ออกแบบภาพร่างงานสื่อผสมจากวัสดุอย่างน้อย 2 ชนิด พร้อมอธิบายเหตุผลในการเลือกใช้"
+      }
+    };
+
+    function showLesson(id) {
+      const lesson = lessons[id];
+      const detail = document.getElementById("lesson-detail");
+
+      if (!lesson) return;
+
+      detail.innerHTML = `
+        <h3>${lesson.title}</h3>
+        <p>${lesson.intro}</p>
+        <ul>
+          ${lesson.points.map(point => `<li>${point}</li>`).join("")}
+        </ul>
+        <p><strong>กิจกรรม:</strong> ${lesson.activity}</p>
+        <button class="button" onclick="closeLesson()">
+          ปิดบทเรียน
+        </button>
+      `;
+
+      detail.classList.add("show");
+      detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function closeLesson() {
+      document.getElementById("lesson-detail").classList.remove("show");
+    }
+  </script>
+
+</body>
+</html>
